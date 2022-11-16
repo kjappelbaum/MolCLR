@@ -3,6 +3,7 @@ import csv
 import math
 import time
 import random
+import pandas as pd 
 import numpy as np
 
 import torch
@@ -21,6 +22,7 @@ from rdkit.Chem.Scaffolds.MurckoScaffold import MurckoScaffoldSmiles
 from rdkit import RDLogger                                                                                                                                                               
 RDLogger.DisableLog('rdApp.*')  
 
+from sklearn.model_selection import train_test_split
 
 ATOM_LIST = list(range(1,119))
 CHIRALITY_LIST = [
@@ -171,7 +173,7 @@ class MolTestDatasetWrapper(object):
     
     def __init__(self, 
         batch_size, num_workers, valid_size, test_size, 
-        data_path, target, task, splitting
+        data_path, target, task, splitting, regression_bin_classes=None
     ):
         super(object, self).__init__()
         self.data_path = data_path
@@ -182,7 +184,8 @@ class MolTestDatasetWrapper(object):
         self.target = target
         self.task = task
         self.splitting = splitting
-        assert splitting in ['random', 'scaffold']
+        self.regression_bin_classes = regression_bin_classes
+        assert splitting in ['random', 'scaffold', 'stratified']
 
     def get_data_loaders(self):
         train_dataset = MolTestDataset(data_path=self.data_path, target=self.target, task=self.task)
@@ -199,7 +202,25 @@ class MolTestDatasetWrapper(object):
             split = int(np.floor(self.valid_size * num_train))
             split2 = int(np.floor(self.test_size * num_train))
             valid_idx, test_idx, train_idx = indices[:split], indices[split:split+split2], indices[split+split2:]
-        
+
+        elif self.splitting == 'stratified':
+            ys = np.array([d.y for d in iter(train_dataset)])
+            if self.regression_bin_classes: 
+                _, bins = pd.cut(ys, self.regression_bin_classes, retbins=True)
+                ys = pd.cut(ys, bins=bins, labels=False)
+            train_ratio = 1 - self.valid_size - self.test_size
+            
+            num_train = len(train_dataset)
+            indices = list(range(num_train))
+
+            train_idx, test_idx, stratify_train, stratify_test = train_test_split(num_train, ys, test_size=1 - train_ratio, stratify=ys)
+
+            if self.valid_size > 0:
+                valid_idx, test_idx = train_test_split(test_idx, test_size=self.test_size/(self.test_size + self.valid_size), stratify=stratify_test) 
+            else:
+                valid_idx = []
+
+
         elif self.splitting == 'scaffold':
             train_idx, valid_idx, test_idx = scaffold_split(train_dataset, self.valid_size, self.test_size)
 

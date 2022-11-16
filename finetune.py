@@ -418,6 +418,19 @@ if __name__ == "__main__":
         config['dataset']['data_path'] = 'data/qm9/qm9.csv'
         target_list = ['mu', 'alpha', 'homo', 'lumo', 'gap', 'r2', 'zpve', 'cv']
 
+    elif config["task_name"] == 'photoswitch_classification':
+        config['dataset']['task'] = 'classification'
+        config['dataset']['data_path'] = 'data/photoswitch/photoswitch.csv'
+        config['model']['output_dim'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ['wavelength_cat']
+    
+    elif config["task_name"] == 'photoswitch_regression':
+        config['dataset']['task'] = 'regression'
+        config['dataset']['data_path'] = 'data/photoswitch/photoswitch.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ['E isomer pi-pi* wavelength in nm']
     else:
         raise ValueError('Undefined downstream task!')
 

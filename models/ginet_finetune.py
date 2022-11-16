@@ -60,8 +60,8 @@ class GINet(nn.Module):
         node representations
     """
     def __init__(self, 
-        task='classification', num_layer=5, emb_dim=300, feat_dim=512, 
-        drop_ratio=0, pool='mean', pred_n_layer=2, pred_act='softplus'
+        task='classification', num_layer=5, emb_dim=300, feat_dim=512,
+        drop_ratio=0, pool='mean', pred_n_layer=2, pred_act='softplus', output_dim=None,
     ):
         super(GINet, self).__init__()
         self.num_layer = num_layer
@@ -94,9 +94,9 @@ class GINet(nn.Module):
         self.feat_lin = nn.Linear(self.emb_dim, self.feat_dim)
 
         if self.task == 'classification':
-            out_dim = 2
+            out_dim = 2 if output_dim is None else output_dim
         elif self.task == 'regression':
-            out_dim = 1
+            out_dim = 1 if output_dim is None else output_dim
         
         self.pred_n_layer = max(1, pred_n_layer)
 
