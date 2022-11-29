@@ -433,6 +433,20 @@ if __name__ == "__main__":
         config['dataset']['splitting'] = 'stratified'
         target_list = ["exp"]
 
+    elif config["task_name"] == 'QMUGs':
+        config['dataset']['task'] = 'regression'
+        config['dataset']['data_path'] = 'data/qmugs/bandgap_data.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["GFN2_HOMO_LUMO_GAP"]
+
+    elif config["task_name"] == 'QMUGs_classification':
+        config['dataset']['task'] = 'classification'
+        config['dataset']['data_path'] = 'data/qmugs/bandgap_data.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["GFN2_HOMO_LUMO_GAP_cat"]
+
     elif config["task_name"] == 'Lipo_Classification':
         config['dataset']['task'] = 'classification'
         config['dataset']['data_path'] = 'data/lipophilicity/Lipophilicity.csv'
