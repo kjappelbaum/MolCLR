@@ -14,7 +14,7 @@ from torch.optim.lr_scheduler import CosineAnnealingLR
 from sklearn.metrics import roc_auc_score, mean_squared_error, mean_absolute_error
 
 from dataset.dataset_test import MolTestDatasetWrapper
-
+from pycm import ConfusionMatrix
 
 apex_support = False
 try:
@@ -147,7 +147,7 @@ class FineTune(object):
         valid_n_iter = 0
         best_valid_loss = np.inf
         best_valid_rgr = np.inf
-        best_valid_cls = 0
+        best_valid_cls = -1
 
         for epoch_counter in range(self.config['epochs']):
             for bn, data in enumerate(train_loader):
@@ -195,6 +195,7 @@ class FineTune(object):
             state_dict = torch.load(os.path.join(checkpoints_folder, 'model.pth'), map_location=self.device)
             # model.load_state_dict(state_dict)
             model.load_my_state_dict(state_dict)
+            print(f'Model has {sum(p.numel() for p in model.parameters())} parameters')
             print("Loaded pre-trained model with success.")
         except FileNotFoundError:
             print("Pre-trained weights not found. Training from scratch.")
@@ -238,19 +239,25 @@ class FineTune(object):
         if self.config['dataset']['task'] == 'regression':
             predictions = np.array(predictions)
             labels = np.array(labels)
-            if self.config['task_name'] in ['qm7', 'qm8', 'qm9']:
-                mae = mean_absolute_error(labels, predictions)
-                print('Validation loss:', valid_loss, 'MAE:', mae)
-                return valid_loss, mae
-            else:
-                rmse = mean_squared_error(labels, predictions, squared=False)
-                print('Validation loss:', valid_loss, 'RMSE:', rmse)
-                return valid_loss, rmse
+            #if self.config['task_name'] in ['qm7', 'qm8', 'qm9']:
+            mae = mean_absolute_error(labels, predictions)
+            print('Validation loss:', valid_loss, 'MAE:', mae)
+            return valid_loss, mae
+            # else:
+            #     rmse = mean_squared_error(labels, predictions, squared=False)
+            #     print('Validation loss:', valid_loss, 'RMSE:', rmse)
+            #     return valid_loss, rmse
 
         elif self.config['dataset']['task'] == 'classification': 
             predictions = np.array(predictions)
             labels = np.array(labels)
-            roc_auc = roc_auc_score(labels, predictions[:,1])
+            try:
+                if predictions.shape[1] > 1:
+                    roc_auc = roc_auc_score(labels, predictions, multi_class='ovo')
+                else:
+                    roc_auc = roc_auc_score(labels, predictions[:,1])
+            except ValueError:
+                roc_auc = 0.0
             print('Validation loss:', valid_loss, 'ROC AUC:', roc_auc)
             return valid_loss, roc_auc
 
@@ -297,19 +304,25 @@ class FineTune(object):
         if self.config['dataset']['task'] == 'regression':
             predictions = np.array(predictions)
             labels = np.array(labels)
-            if self.config['task_name'] in ['qm7', 'qm8', 'qm9']:
-                self.mae = mean_absolute_error(labels, predictions)
-                print('Test loss:', test_loss, 'Test MAE:', self.mae)
-            else:
-                self.rmse = mean_squared_error(labels, predictions, squared=False)
-                print('Test loss:', test_loss, 'Test RMSE:', self.rmse)
+            # if self.config['task_name'] in ['qm7', 'qm8', 'qm9', 'photoswitch_regression']:
+            self.mae = mean_absolute_error(labels, predictions)
+            print('Test loss:', test_loss, 'Test MAE:', self.mae)
+            # else:
+            #     self.rmse = mean_squared_error(labels, predictions, squared=False)
+            #    print('Test loss:', test_loss, 'Test RMSE:', self.rmse)
 
         elif self.config['dataset']['task'] == 'classification': 
             predictions = np.array(predictions)
             labels = np.array(labels)
-            self.roc_auc = roc_auc_score(labels, predictions[:,1])
+            try:
+                if predictions.shape[1] > 1:
+                    self.roc_auc = roc_auc_score(labels, predictions, multi_class='ovo')
+                else:
+                    self.roc_auc = roc_auc_score(labels, predictions[:,1])
+            except ValueError:
+                self.roc_auc = 0.0
             print('Test loss:', test_loss, 'Test ROC AUC:', self.roc_auc)
-
+            self.cm = ConfusionMatrix(labels, predictions.argmax(axis=1))
 
 def main(config):
     dataset = MolTestDatasetWrapper(config['batch_size'], **config['dataset'])
@@ -318,12 +331,12 @@ def main(config):
     fine_tune.train()
     
     if config['dataset']['task'] == 'classification':
-        return fine_tune.roc_auc
+        return fine_tune.cm.ACC_Macro, fine_tune.cm.F1_Macro, fine_tune.cm.F1_Micro
     if config['dataset']['task'] == 'regression':
-        if config['task_name'] in ['qm7', 'qm8', 'qm9']:
-            return fine_tune.mae
-        else:
-            return fine_tune.rmse
+        #if config['task_name'] in ['qm7', 'qm8', 'qm9', 'photoswitch_regression']:
+        return fine_tune.mae
+        #else:
+        #    return fine_tune.rmse
 
 
 if __name__ == "__main__":
@@ -388,17 +401,44 @@ if __name__ == "__main__":
     elif config['task_name'] == 'FreeSolv':
         config['dataset']['task'] = 'regression'
         config['dataset']['data_path'] = 'data/freesolv/freesolv.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
         target_list = ["expt"]
+
+    elif config['task_name'] == 'FreeSolv_Classification':
+        config['dataset']['task'] = 'classification'
+        config['dataset']['data_path'] = 'data/freesolv/freesolv.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["expt_cat"]
     
     elif config["task_name"] == 'ESOL':
         config['dataset']['task'] = 'regression'
         config['dataset']['data_path'] = 'data/esol/esol.csv'
-        target_list = ["measured log solubility in mols per litre"]
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["y"]
+
+    elif config["task_name"] == 'ESOL_Classification':
+        config['dataset']['task'] = 'classification'
+        config['dataset']['data_path'] = 'data/esol/esol.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["y_cat"]
 
     elif config["task_name"] == 'Lipo':
         config['dataset']['task'] = 'regression'
         config['dataset']['data_path'] = 'data/lipophilicity/Lipophilicity.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
         target_list = ["exp"]
+
+    elif config["task_name"] == 'Lipo_Classification':
+        config['dataset']['task'] = 'classification'
+        config['dataset']['data_path'] = 'data/lipophilicity/Lipophilicity.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["exp_cat"]
     
     elif config["task_name"] == 'qm7':
         config['dataset']['task'] = 'regression'
@@ -420,17 +460,32 @@ if __name__ == "__main__":
 
     elif config["task_name"] == 'photoswitch_classification':
         config['dataset']['task'] = 'classification'
-        config['dataset']['data_path'] = 'data/photoswitch/photoswitch.csv'
+        config['dataset']['data_path'] = 'data/photoswitches/photoswitches.csv'
         config['model']['output_dim'] = 5
         config['dataset']['splitting'] = 'stratified'
         target_list = ['wavelength_cat']
     
     elif config["task_name"] == 'photoswitch_regression':
         config['dataset']['task'] = 'regression'
-        config['dataset']['data_path'] = 'data/photoswitch/photoswitch.csv'
+        config['dataset']['data_path'] = 'data/photoswitches/photoswitches.csv'
         config['dataset']['regression_bin_classes'] = 5
         config['dataset']['splitting'] = 'stratified'
         target_list = ['E isomer pi-pi* wavelength in nm']
+
+    elif config["task_name"] == 'solubility_regression':
+        config['dataset']['task'] = 'regression'
+        config['dataset']['data_path'] = 'data/solubility/solubility.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ['Solubility']
+
+    elif config["task_name"] == 'solubility_classification':
+        config['dataset']['task'] = 'classification'
+        config['dataset']['data_path'] = 'data/solubility/solubility.csv'
+        config['model']['output_dim'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ['Solubility_cat']
+
     else:
         raise ValueError('Undefined downstream task!')
 

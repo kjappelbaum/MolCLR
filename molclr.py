@@ -151,6 +151,7 @@ class MolCLR(object):
             checkpoints_folder = os.path.join('./ckpt', self.config['load_model'], 'checkpoints')
             state_dict = torch.load(os.path.join(checkpoints_folder, 'model.pth'))
             model.load_state_dict(state_dict)
+            print(f'Model has {sum(p.numel() for p in model.parameters())} parameters')
             print("Loaded pre-trained model with success.")
         except FileNotFoundError:
             print("Pre-trained weights not found. Training from scratch.")

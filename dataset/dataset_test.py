@@ -204,7 +204,7 @@ class MolTestDatasetWrapper(object):
             valid_idx, test_idx, train_idx = indices[:split], indices[split:split+split2], indices[split+split2:]
 
         elif self.splitting == 'stratified':
-            ys = np.array([d.y for d in iter(train_dataset)])
+            ys = np.array([d.y.detach().item() for d in iter(train_dataset)])
             if self.regression_bin_classes: 
                 _, bins = pd.cut(ys, self.regression_bin_classes, retbins=True)
                 ys = pd.cut(ys, bins=bins, labels=False)
@@ -213,18 +213,20 @@ class MolTestDatasetWrapper(object):
             num_train = len(train_dataset)
             indices = list(range(num_train))
 
-            train_idx, test_idx, stratify_train, stratify_test = train_test_split(num_train, ys, test_size=1 - train_ratio, stratify=ys)
+            train_idx, test_idx, stratify_train, stratify_test = train_test_split(indices, ys, test_size=1 - train_ratio, stratify=ys)
 
             if self.valid_size > 0:
                 valid_idx, test_idx = train_test_split(test_idx, test_size=self.test_size/(self.test_size + self.valid_size), stratify=stratify_test) 
             else:
-                valid_idx = []
+                print("No validation set, using training set for validation")
+                valid_idx = train_idx
 
 
         elif self.splitting == 'scaffold':
             train_idx, valid_idx, test_idx = scaffold_split(train_dataset, self.valid_size, self.test_size)
 
         # define samplers for obtaining training and validation batches
+        print("Train size: {}, Valid size: {}, Test size: {}".format(len(train_idx), len(valid_idx), len(test_idx)))
         train_sampler = SubsetRandomSampler(train_idx)
         valid_sampler = SubsetRandomSampler(valid_idx)
         test_sampler = SubsetRandomSampler(test_idx)
