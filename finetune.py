@@ -411,7 +411,7 @@ if __name__ == "__main__":
         config['dataset']['regression_bin_classes'] = 5
         config['dataset']['splitting'] = 'stratified'
         target_list = ["expt_cat"]
-    
+        config['model']['output_dim'] = 6
     elif config["task_name"] == 'ESOL':
         config['dataset']['task'] = 'regression'
         config['dataset']['data_path'] = 'data/esol/esol.csv'
@@ -424,6 +424,7 @@ if __name__ == "__main__":
         config['dataset']['data_path'] = 'data/esol/esol.csv'
         config['dataset']['regression_bin_classes'] = 5
         config['dataset']['splitting'] = 'stratified'
+        config['model']['output_dim'] = 5
         target_list = ["y_cat"]
 
     elif config["task_name"] == 'Lipo':
@@ -438,12 +439,13 @@ if __name__ == "__main__":
         config['dataset']['data_path'] = 'data/qmugs/bandgap_data.csv'
         config['dataset']['regression_bin_classes'] = 5
         config['dataset']['splitting'] = 'stratified'
-        target_list = ["GFN2_HOMO_LUMO_GAP"]
+        target_list = ["GFN2_HOMO_LUMO_GAP_ev"]
 
     elif config["task_name"] == 'QMUGs_classification':
         config['dataset']['task'] = 'classification'
         config['dataset']['data_path'] = 'data/qmugs/bandgap_data.csv'
         config['dataset']['regression_bin_classes'] = 5
+        config['model']['output_dim'] = 5
         config['dataset']['splitting'] = 'stratified'
         target_list = ["GFN2_HOMO_LUMO_GAP_cat"]
 
@@ -451,6 +453,7 @@ if __name__ == "__main__":
         config['dataset']['task'] = 'classification'
         config['dataset']['data_path'] = 'data/lipophilicity/Lipophilicity.csv'
         config['dataset']['regression_bin_classes'] = 5
+        config['model']['output_dim'] = 5
         config['dataset']['splitting'] = 'stratified'
         target_list = ["exp_cat"]
     

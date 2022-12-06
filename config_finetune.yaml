@@ -9,7 +9,7 @@ init_base_lr: 0.0001 # initial learning rate for the base GNN encoder
 weight_decay: 1e-6 # weight decay of Adam
 gpu: cuda:0 # training GPU
 task_name:
-  ESOL # name of fine-tuning benchmark, inlcuding
+  QMUGs # name of fine-tuning benchmark, inlcuding
   # classifications: BBBP/BACE/ClinTox/Tox21/HIV/SIDER/MUV
   # regressions: FreeSolv/ESOL/Lipo/qm7/qm8/qm9
 
@@ -24,5 +24,5 @@ model:
 dataset:
   num_workers: 4 # dataloader number of workers
   valid_size: 0 # ratio of validation data
-  test_size: 0.4212962962962963
+  test_size: 0.9999241489895887
   splitting: stratified # data splitting (i.e., random/scaffold)
