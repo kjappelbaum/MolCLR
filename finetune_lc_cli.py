@@ -4,6 +4,7 @@ import pandas as pd
 import os 
 import time
 from loguru import logger
+import fire 
 
 def get_test_frac(config, train_points):
     df = pd.read_csv(config['dataset']['data_path'])
@@ -200,11 +201,6 @@ def run_expt(task_name, train_points):
         mode='a', index=False, header=False
     )
 
+
 if __name__ == '__main__':
-    for i in range(10):
-        for task in lc_points.keys():
-            for train_points in lc_points[task]:
-                try:
-                    run_expt(task, train_points)
-                except Exception as e:
-                    logger.exception(e)
+    fire.Fire(run_expt)

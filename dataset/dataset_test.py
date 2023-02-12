@@ -209,7 +209,7 @@ class MolTestDatasetWrapper(object):
                 num_workers=self.num_workers, drop_last=False
             )
             test_loader = DataLoader(
-                train_dataset, batch_size=self.batch_size, sampler=test_sampler,
+                test_dataset, batch_size=self.batch_size, sampler=test_sampler,
                 num_workers=self.num_workers, drop_last=False
             )
             return train_loader, valid_loader, test_loader
