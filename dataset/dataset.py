@@ -150,6 +150,7 @@ class MoleculeDataset(Dataset):
         return len(self.smiles_data)
 
 
+
 class MoleculeDatasetWrapper(object):
     def __init__(self, batch_size, num_workers, valid_size, data_path):
         super(object, self).__init__()

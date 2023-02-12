@@ -67,7 +67,10 @@ class FineTune(object):
         self.writer = SummaryWriter(log_dir=log_dir)
         self.dataset = dataset
         if config['dataset']['task'] == 'classification':
-            self.criterion = nn.CrossEntropyLoss()
+            if config['model']['output_dim'] == 1:
+                self.criterion = nn.BCEWithLogitsLoss()
+            else:
+                self.criterion = nn.CrossEntropyLoss()
         elif config['dataset']['task'] == 'regression':
             if self.config["task_name"] in ['qm7', 'qm8', 'qm9']:
                 self.criterion = nn.L1Loss()
@@ -89,7 +92,10 @@ class FineTune(object):
         __, pred = model(data)  # [N,C]
 
         if self.config['dataset']['task'] == 'classification':
-            loss = self.criterion(pred, data.y.flatten())
+            if self.config['model']['output_dim'] == 1:
+                loss = self.criterion(pred.flatten(), data.y.flatten().float())
+            else:
+                loss = self.criterion(pred, data.y.flatten())
         elif self.config['dataset']['task'] == 'regression':
             if self.normalizer:
                 loss = self.criterion(pred, self.normalizer.norm(data.y))
@@ -253,10 +259,16 @@ class FineTune(object):
             labels = np.array(labels)
             try:
                 if predictions.shape[1] > 1:
-                    roc_auc = roc_auc_score(labels, predictions, multi_class='ovo')
+                    if self.config['dataset']['regression_bin_classes'] > 2:
+                        roc_auc = roc_auc_score(labels, predictions, multi_class='ovo')
+                    else:
+                        roc_auc = roc_auc_score(labels, predictions[:,1])
                 else:
-                    roc_auc = roc_auc_score(labels, predictions[:,1])
-            except ValueError:
+                    try:
+                        roc_auc = roc_auc_score(labels, predictions[:,1])
+                    except IndexError:
+                        roc_auc = roc_auc_score(labels, predictions.flatten())
+            except ValueError as e:
                 roc_auc = 0.0
             print('Validation loss:', valid_loss, 'ROC AUC:', roc_auc)
             return valid_loss, roc_auc
@@ -288,8 +300,11 @@ class FineTune(object):
                     pred = self.normalizer.denorm(pred)
 
                 if self.config['dataset']['task'] == 'classification':
-                    pred = F.softmax(pred, dim=-1)
-
+                    if self.config['model']['output_dim'] >1:
+                        pred = F.softmax(pred, dim=-1)
+                    else:
+                        pred = torch.sigmoid(pred)
+                        print(pred)
                 if self.device == 'cpu':
                     predictions.extend(pred.detach().numpy())
                     labels.extend(data.y.flatten().numpy())
@@ -316,13 +331,28 @@ class FineTune(object):
             labels = np.array(labels)
             try:
                 if predictions.shape[1] > 1:
-                    self.roc_auc = roc_auc_score(labels, predictions, multi_class='ovo')
+                    if self.config['dataset']['regression_bin_classes'] > 2:
+                        self.roc_auc = roc_auc_score(labels, predictions, multi_class='ovo')
+                    else:
+                        self.roc_auc = roc_auc_score(labels, predictions[:,1])
                 else:
-                    self.roc_auc = roc_auc_score(labels, predictions[:,1])
+                    try:
+                        self.roc_auc = roc_auc_score(labels, predictions[:,1])
+                    except IndexError:
+                        self.roc_auc = roc_auc_score(labels, predictions.flatten())
             except ValueError:
                 self.roc_auc = 0.0
             print('Test loss:', test_loss, 'Test ROC AUC:', self.roc_auc)
-            self.cm = ConfusionMatrix(labels, predictions.argmax(axis=1))
+
+            if self.config['model']['output_dim'] > 1:
+                if self.config['dataset']['regression_bin_classes'] > 2:
+                    self.cm = ConfusionMatrix(labels, predictions.argmax(axis=1))
+                else:
+                    self.cm = ConfusionMatrix(labels, (predictions[:,1] > 0.5).astype(int))
+            else:
+                self.cm = ConfusionMatrix(labels, (predictions.flatten() > 0.5).astype(int))
+      
+            #self.cm = ConfusionMatrix(labels, predictions.argmax(axis=1))
 
 def main(config):
     dataset = MolTestDatasetWrapper(config['batch_size'], **config['dataset'])
@@ -405,27 +435,21 @@ if __name__ == "__main__":
         config['dataset']['splitting'] = 'stratified'
         target_list = ["expt"]
 
-    elif config['task_name'] == 'FreeSolv_Classification':
+    elif config['task_name'] == 'FreeSolv_2':
+        config['dataset']['task'] = 'classification'
+        config['dataset']['data_path'] = 'data/freesolv/freesolv.csv'
+        config['dataset']['regression_bin_classes'] = 2
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["target_2"]
+        config['model']['output_dim'] = 2
+
+    elif config['task_name'] == 'FreeSolv_5':
         config['dataset']['task'] = 'classification'
         config['dataset']['data_path'] = 'data/freesolv/freesolv.csv'
         config['dataset']['regression_bin_classes'] = 5
         config['dataset']['splitting'] = 'stratified'
-        target_list = ["expt_cat"]
-        config['model']['output_dim'] = 6
-    elif config["task_name"] == 'ESOL':
-        config['dataset']['task'] = 'regression'
-        config['dataset']['data_path'] = 'data/esol/esol.csv'
-        config['dataset']['regression_bin_classes'] = 5
-        config['dataset']['splitting'] = 'stratified'
-        target_list = ["y"]
-
-    elif config["task_name"] == 'ESOL_Classification':
-        config['dataset']['task'] = 'classification'
-        config['dataset']['data_path'] = 'data/esol/esol.csv'
-        config['dataset']['regression_bin_classes'] = 5
-        config['dataset']['splitting'] = 'stratified'
+        target_list = ["target_5"]
         config['model']['output_dim'] = 5
-        target_list = ["y_cat"]
 
     elif config["task_name"] == 'Lipo':
         config['dataset']['task'] = 'regression'
@@ -434,29 +458,91 @@ if __name__ == "__main__":
         config['dataset']['splitting'] = 'stratified'
         target_list = ["exp"]
 
-    elif config["task_name"] == 'QMUGs':
-        config['dataset']['task'] = 'regression'
-        config['dataset']['data_path'] = 'data/qmugs/bandgap_data.csv'
-        config['dataset']['regression_bin_classes'] = 5
-        config['dataset']['splitting'] = 'stratified'
-        target_list = ["GFN2_HOMO_LUMO_GAP_ev"]
-
-    elif config["task_name"] == 'QMUGs_classification':
-        config['dataset']['task'] = 'classification'
-        config['dataset']['data_path'] = 'data/qmugs/bandgap_data.csv'
-        config['dataset']['regression_bin_classes'] = 5
-        config['model']['output_dim'] = 5
-        config['dataset']['splitting'] = 'stratified'
-        target_list = ["GFN2_HOMO_LUMO_GAP_cat"]
-
-    elif config["task_name"] == 'Lipo_Classification':
+    elif config["task_name"] == 'Lipo_2':
         config['dataset']['task'] = 'classification'
         config['dataset']['data_path'] = 'data/lipophilicity/Lipophilicity.csv'
         config['dataset']['regression_bin_classes'] = 5
-        config['model']['output_dim'] = 5
         config['dataset']['splitting'] = 'stratified'
-        target_list = ["exp_cat"]
-    
+        target_list = ["target_2"]  
+        config['model']['output_dim'] = 2
+
+    elif config["task_name"] == 'Lipo_5':
+        config['dataset']['task'] = 'classification'
+        config['dataset']['data_path'] = 'data/lipophilicity/Lipophilicity.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["target_5"]  
+        config['model']['output_dim'] = 5
+
+    elif config["task_name"] == 'opv':
+        config['dataset']['task'] = 'regression'
+        config['dataset']['data_path'] = 'data/opv/opv.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["PCE_ave(%)"]
+
+    elif config["task_name"] == 'opv_2':
+        config['dataset']['task'] = 'classification'
+        config['dataset']['data_path'] = 'data/opv/opv.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["target_2"]  
+        config['model']['output_dim'] = 2
+
+    elif config["task_name"] == 'opv_5':
+        config['dataset']['task'] = 'classification'
+        config['dataset']['data_path'] = 'data/opv/opv.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["target_5"]  
+        config['model']['output_dim'] = 5
+
+    elif config["task_name"] == 'qmug':
+        config['dataset']['task'] = 'regression'
+        config['dataset']['data_path'] = 'data/qmug/qmug.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["DFT_HOMO_LUMO_GAP_mean_ev"]
+
+    elif config["task_name"] == 'qmug_2':
+        config['dataset']['task'] = 'classification'
+        config['dataset']['data_path'] = 'data/qmug/qmug.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["target_2"]  
+        config['model']['output_dim'] = 2
+
+    elif config["task_name"] == 'qmug_5':
+        config['dataset']['task'] = 'classification'
+        config['dataset']['data_path'] = 'data/qmug/qmug.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["target_5"]  
+        config['model']['output_dim'] = 5
+
+    elif config["task_name"] == 'photoswitch':
+        config['dataset']['task'] = 'regression'
+        config['dataset']['data_path'] = 'data/photoswitch/photoswitch.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["E isomer pi-pi* wavelength in nm"]
+
+    elif config["task_name"] == 'photoswitch_2':
+        config['dataset']['task'] = 'classification'
+        config['dataset']['data_path'] = 'data/photoswitch/photoswitch.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["target_2"]  
+        config['model']['output_dim'] = 2
+
+    elif config["task_name"] == 'photoswitch_5':
+        config['dataset']['task'] = 'classification'
+        config['dataset']['data_path'] = 'data/photoswitch/photoswitch.csv'
+        config['dataset']['regression_bin_classes'] = 5
+        config['dataset']['splitting'] = 'stratified'
+        target_list = ["target_5"]  
+        config['model']['output_dim'] = 5
+
     elif config["task_name"] == 'qm7':
         config['dataset']['task'] = 'regression'
         config['dataset']['data_path'] = 'data/qm7/qm7.csv'
@@ -475,33 +561,6 @@ if __name__ == "__main__":
         config['dataset']['data_path'] = 'data/qm9/qm9.csv'
         target_list = ['mu', 'alpha', 'homo', 'lumo', 'gap', 'r2', 'zpve', 'cv']
 
-    elif config["task_name"] == 'photoswitch_classification':
-        config['dataset']['task'] = 'classification'
-        config['dataset']['data_path'] = 'data/photoswitches/photoswitches.csv'
-        config['model']['output_dim'] = 5
-        config['dataset']['splitting'] = 'stratified'
-        target_list = ['wavelength_cat']
-    
-    elif config["task_name"] == 'photoswitch_regression':
-        config['dataset']['task'] = 'regression'
-        config['dataset']['data_path'] = 'data/photoswitches/photoswitches.csv'
-        config['dataset']['regression_bin_classes'] = 5
-        config['dataset']['splitting'] = 'stratified'
-        target_list = ['E isomer pi-pi* wavelength in nm']
-
-    elif config["task_name"] == 'solubility_regression':
-        config['dataset']['task'] = 'regression'
-        config['dataset']['data_path'] = 'data/solubility/solubility.csv'
-        config['dataset']['regression_bin_classes'] = 5
-        config['dataset']['splitting'] = 'stratified'
-        target_list = ['Solubility']
-
-    elif config["task_name"] == 'solubility_classification':
-        config['dataset']['task'] = 'classification'
-        config['dataset']['data_path'] = 'data/solubility/solubility.csv'
-        config['model']['output_dim'] = 5
-        config['dataset']['splitting'] = 'stratified'
-        target_list = ['Solubility_cat']
 
     else:
         raise ValueError('Undefined downstream task!')

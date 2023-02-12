@@ -19,9 +19,9 @@ from rdkit.Chem.rdchem import HybridizationType
 from rdkit.Chem.rdchem import BondType as BT
 from rdkit.Chem import AllChem
 from rdkit.Chem.Scaffolds.MurckoScaffold import MurckoScaffoldSmiles
-from rdkit import RDLogger                                                                                                                                                               
+from rdkit import RDLogger                                                 
 RDLogger.DisableLog('rdApp.*')  
-
+from pathlib import Path
 from sklearn.model_selection import train_test_split
 
 ATOM_LIST = list(range(1,119))
@@ -37,7 +37,7 @@ BONDDIR_LIST = [
     Chem.rdchem.BondDir.ENDUPRIGHT,
     Chem.rdchem.BondDir.ENDDOWNRIGHT
 ]
-
+MAX_TEST_SIZE = 5_000
 
 def _generate_scaffold(smiles, include_chirality=False):
     mol = Chem.MolFromSmiles(smiles)
@@ -118,6 +118,9 @@ class MolTestDataset(Dataset):
         self.smiles_data, self.labels = read_smiles(data_path, target, task)
         self.task = task
 
+        self.smiles_data = self.smiles_data[:MAX_TEST_SIZE]
+        self.labels = self.labels[:MAX_TEST_SIZE]
+
         self.conversion = 1
         if 'qm9' in data_path and target in ['homo', 'lumo', 'gap', 'zpve', 'u0']:
             self.conversion = 27.211386246
@@ -189,6 +192,28 @@ class MolTestDatasetWrapper(object):
 
     def get_data_loaders(self):
         train_dataset = MolTestDataset(data_path=self.data_path, target=self.target, task=self.task)
+        if 'esol' in self.data_path:
+            train_dataset = MolTestDataset(data_path=self.data_path, target=self.target, task=self.task)
+            test_dataset = MolTestDataset(data_path=os.path.join(Path(self.data_path).parent, 'solubility.csv'), target=self.target, task=self.task)
+
+            train_sampler = SubsetRandomSampler(list(range(len(train_dataset))))
+            valid_sampler = SubsetRandomSampler(list(range(len(train_dataset))))
+            test_sampler = SubsetRandomSampler(list(range(len(test_dataset))))
+
+            train_loader = DataLoader(
+            train_dataset, batch_size=self.batch_size, sampler=train_sampler,
+            num_workers=self.num_workers, drop_last=False
+            )
+            valid_loader = DataLoader(
+                train_dataset, batch_size=self.batch_size, sampler=valid_sampler,
+                num_workers=self.num_workers, drop_last=False
+            )
+            test_loader = DataLoader(
+                train_dataset, batch_size=self.batch_size, sampler=test_sampler,
+                num_workers=self.num_workers, drop_last=False
+            )
+            return train_loader, valid_loader, test_loader
+
         train_loader, valid_loader, test_loader = self.get_train_validation_data_loaders(train_dataset)
         return train_loader, valid_loader, test_loader
 

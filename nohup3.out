@@ -1,0 +1,588 @@
+nohup: ignoring input
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'FreeSolv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9833055091819699, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/freesolv/freesolv.csv', 'regression_bin_classes': 2}}
+Running on: cpu
+598
+No validation set, using training set for validation
+Train size: 9, Valid size: 9, Test size: 589
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'FreeSolv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9165275459098498, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/freesolv/freesolv.csv', 'regression_bin_classes': 2}}
+Running on: cpu
+598
+No validation set, using training set for validation
+Train size: 49, Valid size: 49, Test size: 549
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'FreeSolv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.8330550918196995, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/freesolv/freesolv.csv', 'regression_bin_classes': 2}}
+Running on: cpu
+598
+No validation set, using training set for validation
+Train size: 99, Valid size: 99, Test size: 499
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'FreeSolv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.666110183639399, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/freesolv/freesolv.csv', 'regression_bin_classes': 2}}
+Running on: cpu
+598
+No validation set, using training set for validation
+Train size: 199, Valid size: 199, Test size: 399
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'FreeSolv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.1652754590984975, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/freesolv/freesolv.csv', 'regression_bin_classes': 2}}
+Running on: cpu
+598
+No validation set, using training set for validation
+Train size: 499, Valid size: 499, Test size: 99
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'Lipo_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9947340705634544, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/lipophilicity/Lipophilicity.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1898
+No validation set, using training set for validation
+Train size: 9, Valid size: 9, Test size: 1889
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'Lipo_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9736703528172722, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/lipophilicity/Lipophilicity.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1898
+No validation set, using training set for validation
+Train size: 49, Valid size: 49, Test size: 1849
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'Lipo_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9473407056345445, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/lipophilicity/Lipophilicity.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1898
+No validation set, using training set for validation
+Train size: 99, Valid size: 99, Test size: 1799
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'Lipo_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.894681411269089, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/lipophilicity/Lipophilicity.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1898
+No validation set, using training set for validation
+Train size: 199, Valid size: 199, Test size: 1699
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'Lipo_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.7367035281727224, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/lipophilicity/Lipophilicity.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1898
+No validation set, using training set for validation
+Train size: 499, Valid size: 499, Test size: 1399
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'opv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9908925318761385, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/opv/opv.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1097
+No validation set, using training set for validation
+Train size: 9, Valid size: 9, Test size: 1088
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'opv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9544626593806922, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/opv/opv.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1097
+No validation set, using training set for validation
+Train size: 49, Valid size: 49, Test size: 1048
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'opv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9089253187613844, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/opv/opv.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1097
+No validation set, using training set for validation
+Train size: 99, Valid size: 99, Test size: 998
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'opv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.8178506375227687, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/opv/opv.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1097
+No validation set, using training set for validation
+Train size: 199, Valid size: 199, Test size: 898
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'opv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.5446265938069217, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/opv/opv.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1097
+No validation set, using training set for validation
+Train size: 499, Valid size: 499, Test size: 598
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'qmug_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9999848297979177, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/qmug/qmug.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+659186
+No validation set, using training set for validation
+Train size: 9, Valid size: 9, Test size: 659177
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'qmug_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9999241489895887, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/qmug/qmug.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+659186
+No validation set, using training set for validation
+Train size: 49, Valid size: 49, Test size: 659137
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'qmug_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9998482979791774, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/qmug/qmug.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+659186
+No validation set, using training set for validation
+Train size: 99, Valid size: 99, Test size: 659087
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'qmug_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9996965959583548, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/qmug/qmug.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+659186
+No validation set, using training set for validation
+Train size: 199, Valid size: 199, Test size: 658987
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'qmug_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9992414898958869, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/qmug/qmug.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+659186
+No validation set, using training set for validation
+Train size: 499, Valid size: 499, Test size: 658687
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'qmug_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9984829797917738, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/qmug/qmug.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+659186
+No validation set, using training set for validation
+Train size: 999, Valid size: 999, Test size: 658187
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'photoswitch_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9751861042183623, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/photoswitch/photoswitch.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+389
+No validation set, using training set for validation
+Train size: 9, Valid size: 9, Test size: 380
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'photoswitch_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9503722084367245, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/photoswitch/photoswitch.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+389
+No validation set, using training set for validation
+Train size: 19, Valid size: 19, Test size: 370
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'photoswitch_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.8759305210918115, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/photoswitch/photoswitch.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+389
+No validation set, using training set for validation
+Train size: 48, Valid size: 48, Test size: 341
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'photoswitch_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.7518610421836228, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/photoswitch/photoswitch.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+389
+No validation set, using training set for validation
+Train size: 96, Valid size: 96, Test size: 293
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'photoswitch_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.5037220843672456, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/photoswitch/photoswitch.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+389
+No validation set, using training set for validation
+Train size: 193, Valid size: 193, Test size: 196
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'FreeSolv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9833055091819699, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/freesolv/freesolv.csv', 'regression_bin_classes': 2}}
+Running on: cpu
+598
+No validation set, using training set for validation
+Train size: 9, Valid size: 9, Test size: 589
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'FreeSolv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9165275459098498, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/freesolv/freesolv.csv', 'regression_bin_classes': 2}}
+Running on: cpu
+598
+No validation set, using training set for validation
+Train size: 49, Valid size: 49, Test size: 549
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'FreeSolv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.8330550918196995, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/freesolv/freesolv.csv', 'regression_bin_classes': 2}}
+Running on: cpu
+598
+No validation set, using training set for validation
+Train size: 99, Valid size: 99, Test size: 499
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'FreeSolv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.666110183639399, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/freesolv/freesolv.csv', 'regression_bin_classes': 2}}
+Running on: cpu
+598
+No validation set, using training set for validation
+Train size: 199, Valid size: 199, Test size: 399
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'FreeSolv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.1652754590984975, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/freesolv/freesolv.csv', 'regression_bin_classes': 2}}
+Running on: cpu
+598
+No validation set, using training set for validation
+Train size: 499, Valid size: 499, Test size: 99
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'Lipo_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9947340705634544, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/lipophilicity/Lipophilicity.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1898
+No validation set, using training set for validation
+Train size: 9, Valid size: 9, Test size: 1889
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'Lipo_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9736703528172722, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/lipophilicity/Lipophilicity.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1898
+No validation set, using training set for validation
+Train size: 49, Valid size: 49, Test size: 1849
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'Lipo_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9473407056345445, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/lipophilicity/Lipophilicity.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1898
+No validation set, using training set for validation
+Train size: 99, Valid size: 99, Test size: 1799
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'Lipo_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.894681411269089, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/lipophilicity/Lipophilicity.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1898
+No validation set, using training set for validation
+Train size: 199, Valid size: 199, Test size: 1699
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'Lipo_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.7367035281727224, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/lipophilicity/Lipophilicity.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1898
+No validation set, using training set for validation
+Train size: 499, Valid size: 499, Test size: 1399
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'opv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9908925318761385, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/opv/opv.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1097
+No validation set, using training set for validation
+Train size: 9, Valid size: 9, Test size: 1088
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'opv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9544626593806922, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/opv/opv.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1097
+No validation set, using training set for validation
+Train size: 49, Valid size: 49, Test size: 1048
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'opv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9089253187613844, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/opv/opv.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1097
+No validation set, using training set for validation
+Train size: 99, Valid size: 99, Test size: 998
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'opv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.8178506375227687, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/opv/opv.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1097
+No validation set, using training set for validation
+Train size: 199, Valid size: 199, Test size: 898
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'opv_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.5446265938069217, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/opv/opv.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+1097
+No validation set, using training set for validation
+Train size: 499, Valid size: 499, Test size: 598
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
+Target 1 is out of bounds.
+{'batch_size': 32, 'epochs': 100, 'eval_every_n_epochs': 1, 'fine_tune_from': 'pretrained_gin', 'log_every_n_steps': 50, 'fp16_precision': False, 'init_lr': 0.0005, 'init_base_lr': 0.0001, 'weight_decay': '1e-6', 'gpu': 'cuda:0', 'task_name': 'qmug_2', 'model_type': 'gin', 'model': {'num_layer': 5, 'emb_dim': 300, 'feat_dim': 512, 'drop_ratio': 0.3, 'pool': 'mean', 'output_dim': 1}, 'dataset': {'num_workers': 4, 'valid_size': 0, 'test_size': 0.9999848297979177, 'splitting': 'stratified', 'task': 'classification', 'data_path': 'data/qmug/qmug.csv', 'regression_bin_classes': 5}}
+Running on: cpu
+659186
+No validation set, using training set for validation
+Train size: 9, Valid size: 9, Test size: 659177
+Model has 2207589 parameters
+Loaded pre-trained model with success.
+pred_head.0.weight True
+pred_head.0.bias True
+pred_head.2.weight True
+pred_head.2.bias True
+pred_head.4.weight True
+pred_head.4.bias True
